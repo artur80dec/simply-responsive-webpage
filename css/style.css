@@ -1,0 +1,235 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  /* wpis ten powoduje iż odnośniki z nawigacji kliknięte będą płynnie przenosić do strony gdzie są dane id */
+}
+body {
+  font-family: "Open Sans", sans-serif;
+}
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  /* to są trzy linijki które należy zapamiętać - to jest wypozycjonowanie naszych elementów strony internetowej na środku */
+  /* klasę te nadajemy na divie który będzie bezpośrednim dzieckiem nav'a (nav>div.wrapper to spowoduje że bgc nadany na nav nie będzie się ograniczał do 1200px tylko zawsze będzie na calym ekranie!! Pozdro dla kumatych */
+}
+.hero-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .8);
+}
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+.hero-text h1 {
+  margin-bottom: 5px;
+  text-shadow: 3px 3px 5px #000;
+  color: #ddd;
+}
+.hero-text span {
+  text-transform: uppercase;
+  color: #09f;
+}
+.section-title {
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* nawigacja */
+
+section {
+  /* gdy wciskamy w nawigacji link "o nas" to jak nas przenosi do tej sekcji to nawigacja zasłania nam tekst, aby się pozbyć tego problemu musimy dać taki zapis jak poniżej: (DO ZAPAMIĘTANIA!!!) */
+  scroll-margin-top: 70px;
+  /* 60px ponieważ sprawdziliśmy devToolsami ile wysokości ma nasze nav */
+  /* aktualizacja -> dajmy 70px żeby dać większy odstęp od góry */
+  /* aby ten scrool działał nam płynnie to musimy dać na tagu
+  html {
+    scroll-behavior: smooth;
+  }
+  */
+}
+
+nav {
+  height: 60px;
+  line-height: 60px;
+  background-color: #ddd;
+  text-align: center;
+  /* position: fixed; */
+  top: 0;
+  position: sticky;
+  z-index: 50;
+}
+.burger-icon {
+  display: block;
+  margin-left: auto;
+  /* margin-left: auto -> ikona pójdzie w lewą stronę margin-right: right ikona przyklei się do lewej części przeglądarki. Ikony są elementem liniowym więc zanim damy margin musimy z ikony zrobić element blokowy -> czyli display: block i wtedy margin zadziała */
+  padding: 0 30px;
+  background: none;
+  border: none;
+  line-height: 60px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.nav-items {
+  display: none;
+}
+
+
+/* header */
+
+.header {
+  position: relative;
+  background-image: url('../img/wolf_small.jpg');
+  height: 330px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* main */
+
+main {
+  margin: 60px 0;
+}
+
+/* o nas */
+
+.about-us-info {
+  margin-bottom: 10px;
+  padding: 0 20px;
+}
+
+/* produkty */
+
+.products {
+  margin: 60px auto;
+}
+.product h3 {
+  text-transform: uppercase;
+  transition: transform .5s;
+}
+.product {
+  position: relative;
+  height: 300px;
+  /* margin-bottom: 10px; */
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+/* .product:hover > .hero-text > h3 {
+  transform: scale(1.5);
+} */
+/* można krócej niż to co wyżej zakomentowane -> patrz dół */
+.product:hover h3 {
+  transform: scale(1.5);
+}
+.first-product {
+  
+  background-image: url('../img/laptop_dzieci_small.jpg');
+  
+}
+.second-product {
+  background-image: url('../img/keyboard_small.jpg');
+}
+.third-product {
+  background-image: url('../img/kobieta_laptop_kawa_small.jpg');
+}
+.fourth-product {
+  background-image: url('../img/laptop_tablet_słuchawki_small.jpg');
+}
+
+/* kontakt */
+
+.contact {
+  text-align: center;
+}
+.contact h3 {
+  margin: 20px 0 5px;
+  text-transform: uppercase;
+}
+
+/* footer */
+
+footer {
+  padding: 30px 10px;
+  text-align: center;
+  background-color: #ddd;
+}
+
+@media (min-width: 768px) {
+  .burger-icon {
+    display: none;
+  }
+  .nav-items {
+    display: block;
+  }
+  .nav-items a {
+    padding: 0 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #333;
+    transition: color .3s;
+  }
+  .nav-items a:hover {
+    color: #09f;
+  }
+  .header {
+    background-image: url('../img/wolf_big.jpg');
+    height: 400px;
+  }
+  .hero-text h1 {
+    font-size: 36px;
+  }
+  .hero-text p {
+    font-size: 18px;
+  }
+  .first-product {
+    background-image: url('../img/laptop_dzieci_big.jpg');
+  }
+  .second-product {
+    background-image: url('../img/keyboard_big.jpg');
+  }
+  .third-product {
+    background-image: url('../img/kobieta_laptop_kawa_big.jpg');
+  }
+  .fourth-product {
+    background-image: url('../img/laptop_tablet_słuchawki_big.jpg');
+  }
+  .product h3 {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  
+  .product {
+    display: inline-block;
+    /* ^ patrz góra - teraz jak pojedziemy powyżej 992px zepsuliśmy sobie stronę - zniknęła divy ze zdjęciami. divy o klasie .product straciły width: 100% bo tylko diplay: block ma możliwość wyświetlania 100% (po odziedziczonym .wrapper) a przecież width był odziedziczony 100% po section.wrapper ominięcie problemu -> patrz dół*/
+    width: 50%;
+    /* patrz ^ -> przy width: 50% elementy by nie ułożyły się koło siebie ponieważ są te przerwy między div -> błąd html są między divami odstępy enterowe i stąd są te szczeliny */
+    /* innym rozwiązaniem tego problemu przy ustawionym width: 50% jest opakowanie tych wszystkich divó'w ze zdjęciami w jeszcze jednego diva i nadanie mu font-size: 0 a później nadanie w .product odpowiedni rozmiar czcionki */
+  }
+  .products-box {
+    font-size: 0;
+    /* patrz wyżej -> font-size nie zmieni się na 0px ponieważ w .product h3 -> który jest bardzie ścisły określenie obiektu jest font-size: 24px awesome :) Pozdro dla kumatych*/
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-text h1 {
+    font-size: 42px;
+  }
+  .hero-text p {
+    font-size: 20px;
+  }
+}
